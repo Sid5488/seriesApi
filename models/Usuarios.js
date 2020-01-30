@@ -16,13 +16,13 @@ class Usuarios {
 
     buscarEmail(email) {
         return new Promise((resolve, reject) => {
-            sql = 'SELECT * FROM usuarios WHERE email = ?';
+            const sql = 'SELECT * FROM usuarios WHERE email = ?';
 
-            conexao.query(sql, usuario.email, (erro, retorno) => {
+            conexao.query(sql, email, (erro, retorno) => {
                 if(erro) 
                     reject('Erro ao buscar: ' + erro);
                 else 
-                    resolve(retorno);
+                    resolve(retorno[0]);
             });
         });
     }
