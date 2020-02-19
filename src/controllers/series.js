@@ -35,13 +35,14 @@ module.exports = {
 
     async atualiza(req, res) {
         const id = req.params.id;
-        const serie = req.body;
+        let serie = req.body;
         serie.id = id;
 
-        serie = await serieDAO.atualiza(serie);
+        const retorno = await serieDAO.atualiza(serie);
 
-        if(!serie) 
+        if(retorno.affectedRows === 0) 
             return res.status(404).send({erro: 'Série não encontrada'});
+            
         res.send(serie);
     },
 
