@@ -8,7 +8,7 @@ class UsuarioValidator {
                 .withMessage('Deve ter entre 3 a 50 caracteres'),
             check('email').isEmail()
                 .withMessage('Deve ser um e-mail válido'),
-            check('senha').isLength({ min: 8, max: 15 })
+            check('senha').isLength({ min: 4, max: 15 })
                 .withMessage('A senha deve ter entre 8 a 15 caracteres'),
             body('email').custom(async email => {
                 let usuario = await usuarioDao.buscarEmail(email)

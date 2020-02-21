@@ -1,17 +1,20 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const authMid = require('./middlewares/auth');
 
 app.use(express.json());
 
-let allowCrossDomain = (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', '*')
-    next();
-}
+app.use(cors());
 
-app.use(allowCrossDomain);
+// let allowCrossDomain = (req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//     res.header('Access-Control-Allow-Headers', '*')
+//     next();
+// }
+
+// app.use(allowCrossDomain);
 
 const auth = require('./routes/authRoutes');
 const series = require('./routes/seriesRoutes');
